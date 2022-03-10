@@ -1,0 +1,27 @@
+/* Lists */
+#lists ul {
+  margin: 0;
+  padding: 0;
+}
+#lists li {
+  margin: 0;
+  font-size: 1.5rem;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#lists li:nth-child(2n + 1) {
+  background-color: #eee;
+}
+#lists li:hover {
+  background-color: var(--brand-light);
+}
+#lists li a {
+  display: block;
+  padding: 1rem;
+  color: var(--foregroud);
+  text-decoration: none;
+  flex-grow: 1;
+}

@@ -1,3 +1,4 @@
+import './lists.css';
 import { useState, useEffect } from "react";
 import List from "./List";
 import ListForm from "./ListForm";
