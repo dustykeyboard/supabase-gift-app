@@ -1,0 +1,28 @@
+/* Items */
+#items ul {
+  margin: 0;
+  padding: 0;
+}
+#items li {
+  margin: 0;
+  font-size: 1.5rem;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#items li:nth-child(2n + 1) {
+  background-color: #eee;
+}
+#items li:hover {
+  background-color: var(--brand-light);
+}
+#items li > a,
+#items li > span {
+  display: block;
+  padding: 1rem;
+  color: var(--foregroud);
+  text-decoration: none;
+  flex-grow: 1;
+}

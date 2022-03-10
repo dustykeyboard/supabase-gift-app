@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { supabase } from "./supabaseClient";
 import Auth from "./components/Auth";
 import Account from "./components/Account";
-import Lists from "./components/Lists";
-import Gifts from "./components/Gifts";
+import Lists from "./components/lists/Lists";
+import Gifts from "./components/items/Items";
 
 const App = () => {
   const [session, setSession] = useState(null);
