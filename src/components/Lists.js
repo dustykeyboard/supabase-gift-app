@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import List from './List';
-import ListForm from './ListForm'
+import List from "./List";
+import ListForm from "./ListForm";
 import { createList, getAllLists, deleteList } from "../data/lists";
 
 const Lists = () => {
@@ -16,28 +16,31 @@ const Lists = () => {
 
   const handleCreate = async (name) => {
     const newList = await createList(name);
-    setLists([...lists, newList])
-  }
+    setLists([...lists, newList]);
+  };
 
   const handleDelete = async (id) => {
-    const deletedList = await deleteList(id)
-    setLists(lists.filter(list => list.id !== deletedList.id))
-  }
+    if (window.confirm("Are you sure you want to delete this list?")) {
+      const deletedList = await deleteList(id);
+      setLists(lists.filter((list) => list.id !== deletedList.id));
+    }
+  };
 
   return (
-    <>
-      <h2>Lists</h2>
+    <div id="lists">
+      <h2>{lists.length || "No"} Lists</h2>
       {lists.length > 0 ? (
-        <>
-          <p>{lists.length} lists</p>
-      <ul>
-        {lists.map((list) => <List list={list} handleDelete={handleDelete} />)}
-          </ul>
-          </>
-      ) : <p>No lists found</p>}
-      
+        <ul>
+          {lists.map((list) => (
+            <List key={list.id} list={list} handleDelete={handleDelete} />
+          ))}
+        </ul>
+      ) : (
+        <p>No lists found</p>
+      )}
+
       <ListForm onSubmit={handleCreate} />
-    </>
+    </div>
   );
 };
 

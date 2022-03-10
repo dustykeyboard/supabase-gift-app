@@ -2,6 +2,7 @@
   --background: white;
   --foreground: black;
   --brand: #00692f;
+  --brand-light: #d5f7e4;
 }
 
 html,
@@ -54,4 +55,31 @@ nav a {
 main {
   padding: 1rem;
   overflow: auto;
+}
+
+/* Lists */
+#lists ul {
+  margin: 0;
+  padding: 0;
+}
+#lists li {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#lists li:nth-child(2n + 1) {
+  background-color: #eee;
+}
+#lists li:hover {
+  background-color: var(--brand-light);
+}
+#lists li a {
+  display: block;
+  padding: 0.5rem;
+  color: var(--foregroud);
+  text-decoration: none;
+  flex-grow: 1;
 }
