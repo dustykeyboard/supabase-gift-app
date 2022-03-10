@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import List from './List';
 import ListForm from './ListForm'
 import { createList, getAllLists, deleteList } from "../data/lists";
 
@@ -31,9 +31,7 @@ const Lists = () => {
         <>
           <p>{lists.length} lists</p>
       <ul>
-        {lists.map((list) => 
-          <li key={list.id}><Link to={`/list/${list.id}`}>{list.name}</Link> <button type="button" onClick={() => handleDelete(list.id)}>❌</button></li>
-        )}
+        {lists.map((list) => <List list={list} handleDelete={handleDelete} />)}
           </ul>
           </>
       ) : <p>No lists found</p>}

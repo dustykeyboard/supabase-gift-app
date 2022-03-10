@@ -13,7 +13,7 @@ body {
   background: var(--background);
 }
 
-main {
+body {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
@@ -24,7 +24,9 @@ main {
 /* Nav */
 nav {
   background: var(--brand);
-  padding: 1rem;
+  padding: 2rem 1rem;
+  font-size: 2rem;
+  line-height: 2rem;
 }
 nav ul {
   display: flex;
@@ -41,12 +43,15 @@ nav li {
 }
 nav a {
   padding: 1rem;
-  color: white;
+  color: var(--brand-foreground);
+  background: var(--background);
   text-decoration: none;
+  border-radius: 0.5rem;
+  box-shadow: 0.1rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 
-/* Content */
-content {
+/* Main */
+main {
   padding: 1rem;
   overflow: auto;
 }

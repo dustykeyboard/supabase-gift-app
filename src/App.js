@@ -4,7 +4,7 @@ import { supabase } from "./supabaseClient";
 import Auth from "./components/Auth";
 import Account from "./components/Account";
 import Lists from "./components/Lists";
-import List from "./components/List";
+import Gifts from "./components/Gifts";
 
 const App = () => {
   const [session, setSession] = useState(null);
@@ -18,7 +18,7 @@ const App = () => {
   }, []);
 
   return (
-    <main className="container">
+    <>
       {!session ? (
         <Auth />
       ) : (
@@ -26,24 +26,24 @@ const App = () => {
           <Router>
               <nav>
                 <ul>
-                  <li><Link to="/">Home</Link></li>
-                  <li><Link to="/account">Account</Link></li>
+                  <li><Link to="/">🏠</Link></li>
+                  <li><Link to="/account">😁</Link></li>
                 </ul>
             </nav>
-            <content>
+            <main>
               <Routes>
                 <Route path="/" element={<Lists />} />
-                <Route path="list/:list_id" element={<List />} />
+                <Route path="list/:list_id" element={<Gifts />} />
                 <Route
                   path="account"
                   element={<Account key={session.user.id} session={session} />}
                 />
               </Routes>
-            </content>
+            </main>
           </Router>
         </>
       )}
-    </main>
+    </>
   );
 };
 
