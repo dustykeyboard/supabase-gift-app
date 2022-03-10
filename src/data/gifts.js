@@ -17,10 +17,10 @@ const createGift = async (list_id, gift) => {
   return newGift;
 };
 
-const updateGift = async (id, name) => {
+const updateGift = async (id, gift) => {
   const { data: updatedGift } = await supabase
     .from("gifts")
-    .update({ name })
+    .update({ ...gift, id })
     .eq("id", id)
     .single();
   return updatedGift;

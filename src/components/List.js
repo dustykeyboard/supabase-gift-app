@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GiftForm from "./GiftForm";
 import { getList } from "../data/lists";
-import { createGift, getAllGifts, deleteGift } from "../data/gifts";
+import { createGift, getAllGifts, updateGift, deleteGift } from "../data/gifts";
 
 const List = () => {
   const { list_id } = useParams();
@@ -26,9 +26,15 @@ const List = () => {
     setGifts([...gifts, newList]);
   };
 
+  const handleToggle = async (gift) => {
+    console.log('handleTaken', gift)
+    const updatedGift = updateGift(gift.id, { ...gift, taken: !gift.taken });
+    setGifts([...gifts.filter((gift) => gift.id !== updatedGift.id), updatedGift]);
+  };
+
   const handleDelete = async (id) => {
-    const deletedList = await deleteGift(id);
-    setGifts(gifts.filter((list) => list.id !== deletedList.id));
+    const deletedGift = await deleteGift(id);
+    setGifts(gifts.filter((gift) => gift.id !== deletedGift.id));
   };
 
   return (
@@ -38,10 +44,16 @@ const List = () => {
       </h2>
       {gifts.length > 0 ? (
         <>
-          <p>{gifts.length} lists</p>
+          <p>{gifts.length} gift ideas</p>
           <ul>
             {gifts.map((gift) => (
               <li key={gift.id}>
+                <input
+                  type="checkbox"
+                  {...(gift.taken ? "checked" : "")}
+                  onChange={() => handleToggle(gift)}
+                />
+
                 {gift.link ? (
                   <a href={gift.link} target="_blank" rel="noreferrer">
                     {gift.name}

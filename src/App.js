@@ -1,4 +1,3 @@
-import "./index.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { supabase } from "./supabaseClient";
@@ -19,29 +18,32 @@ const App = () => {
   }, []);
 
   return (
-    <div className="container" style={{ padding: "50px 0 100px 0" }}>
+    <main className="container">
       {!session ? (
         <Auth />
       ) : (
         <>
           <Router>
-            <nav>
-              <Link to="/">Home</Link>
-              <Link to="/account">Account</Link>
+              <nav>
+                <ul>
+                  <li><Link to="/">Home</Link></li>
+                  <li><Link to="/account">Account</Link></li>
+                </ul>
             </nav>
-
-            <Routes>
-              <Route path="/" element={<Lists />} />
-              <Route path="list/:list_id" element={<List />} />
-              <Route
-                path="account"
-                element={<Account key={session.user.id} session={session} />}
-              />
-            </Routes>
+            <content>
+              <Routes>
+                <Route path="/" element={<Lists />} />
+                <Route path="list/:list_id" element={<List />} />
+                <Route
+                  path="account"
+                  element={<Account key={session.user.id} session={session} />}
+                />
+              </Routes>
+            </content>
           </Router>
         </>
       )}
-    </div>
+    </main>
   );
 };
 
