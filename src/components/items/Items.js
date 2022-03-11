@@ -3,13 +3,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Item from "./Item";
 import ItemForm from "./ItemForm";
-import { getList } from "../../data/lists";
-import {
-  createItem,
-  getAllItems,
-  updateItem,
-  deleteItem,
-} from "../../data/items";
+import { createItem, getAllItems, updateItem, deleteItem } from "./data";
+import { getList } from "../lists/data";
 
 const Items = () => {
   const { list_id } = useParams();
@@ -29,8 +24,8 @@ const Items = () => {
   }, [list_id]);
 
   const handleNew = () => {
-    setEditing({})
-  }
+    setEditing({});
+  };
 
   const handleCreate = async (item) => {
     const newList = await createItem(list_id, item);
@@ -39,7 +34,11 @@ const Items = () => {
   };
 
   const handleToggle = async (item) => {
-    const updatedItem = await updateItem(item.id, { ...item, taken: !item.taken, id: item.id });
+    const updatedItem = await updateItem(item.id, {
+      ...item,
+      taken: !item.taken,
+      id: item.id,
+    });
     setItems([
       ...items.filter((item) => item.id !== updatedItem.id),
       updatedItem,
@@ -48,17 +47,20 @@ const Items = () => {
 
   const handleEdit = (item) => {
     setEditing(item);
-  }
+  };
+
+  const handelCancel = () => {
+    setEditing(null);
+  };
 
   const handleUpdate = async (item) => {
     const updatedItem = await updateItem(item.id, { ...item, id: item.id });
-    console.log('handleUpdate', item, updatedItem)
     setItems([
-      ...items.filter(item => item.id !== updatedItem.id),
+      ...items.filter((item) => item.id !== updatedItem.id),
       updatedItem,
     ]);
     setEditing(null);
-  }
+  };
 
   const handleDelete = async (item) => {
     if (window.confirm("Are you sure you want to delete this list?")) {
@@ -89,10 +91,17 @@ const Items = () => {
         <p>No items found</p>
       )}
 
-      <button type="button" onClick={handleNew}>Add new item</button>
+      <p>
+        <button onClick={handleNew}>Add new item</button>
+      </p>
 
       {editing != null && (
-        <ItemForm key={editing.id} item={editing} onSubmit={editing.id ? handleUpdate : handleCreate} />
+        <ItemForm
+          key={editing.id}
+          item={editing}
+          onSubmit={editing.id ? handleUpdate : handleCreate}
+          onCancel={handelCancel}
+        />
       )}
     </div>
   );

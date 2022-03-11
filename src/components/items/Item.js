@@ -1,7 +1,7 @@
 const Item = ({ item, handleToggle, handleEdit, handleDelete }) => (
   <li>
     <button type="button" onClick={() => handleToggle(item)}>
-      {item.taken ? '✅' : '🟩'}
+      {item.taken ? '✔️' : ''}
     </button>
 
     {item.link ? (

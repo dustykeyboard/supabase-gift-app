@@ -2,7 +2,7 @@ import './list.css';
 import { useState, useEffect } from "react";
 import List from "./List";
 import ListForm from "./ListForm";
-import { createList, getAllLists, deleteList } from "../../data/lists";
+import { createList, getAllLists, deleteList } from "./data";
 
 const Lists = () => {
   const [lists, setLists] = useState([]);

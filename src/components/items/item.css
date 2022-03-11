@@ -5,11 +5,12 @@
 }
 #items li {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 #items li:nth-child(2n + 1) {
@@ -21,11 +22,17 @@
 #items li > a,
 #items li > span {
   display: block;
-  padding: 1rem;
+  padding: 0.5rem;
   color: var(--foregroud);
   text-decoration: none;
   flex-grow: 1;
 }
+#items li > a:hover {
+  text-decoration: underline;
+}
 #items li button {
-  width: 4rem;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: 50%;
 }

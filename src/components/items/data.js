@@ -1,11 +1,11 @@
-import { supabase } from "../supabaseClient";
+import { supabase } from "../../supabaseClient";
 
 const getAllItems = async (list_id) => {
   const { data: items } = await supabase
     .from("items")
     .select("*")
     .eq('list_id', list_id)
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: true });
   return items;
 };
 

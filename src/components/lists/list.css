@@ -5,11 +5,12 @@
 }
 #lists li {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 #lists li:nth-child(2n + 1) {
@@ -26,5 +27,12 @@
   flex-grow: 1;
 }
 #lists li button {
-  width: 4rem;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+#lists form {
+  padding: 0.5rem;
 }

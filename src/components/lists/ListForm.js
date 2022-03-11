@@ -11,16 +11,16 @@ const ListForm = ({onSubmit}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input
+            <h3>Add a new list</h3>
+            <p><label>List name:<br />
+                <input
                 type="text"
                 value={list}
                 aria-label="list"
                 onChange={event => setList(event.target.value)}
-            />
+            /></label></p>
 
-            <button type="submit">
-                add
-            </button>
+            <p><button type="submit">Add list</button></p>
         </form>
     )
 }

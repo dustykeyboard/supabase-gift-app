@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ItemForm = ({ item: originalItem,onSubmit }) => {
+const ItemForm = ({ item: originalItem, onCancel, onSubmit }) => {
   const [item, setItem] = useState(originalItem);
 
   const handleSubmit = async (event) => {
@@ -11,20 +11,37 @@ const ItemForm = ({ item: originalItem,onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={item.name}
-        aria-label="name"
-        onChange={(event) => setItem({ ...item, name: event.target.value })}
-      />
-      <input
-        type="text"
-        value={item.link}
-        aria-label="link"
-        onChange={(event) => setItem({ ...item, link: event.target.value })}
-      />
+      <h3>Add a new item</h3>
+      <p>
+        <label>
+          Item name:
+          <br />
+          <input
+            type="text"
+            value={item.name}
+            aria-label="name"
+            onChange={(event) => setItem({ ...item, name: event.target.value })}
+          />
+        </label>
+      </p>
 
-      <button type="submit">{originalItem.id ? 'Update' : 'Add'}</button>
+      <p>
+        <label>
+          Item link:
+          <br />
+          <input
+            type="text"
+            value={item.link}
+            aria-label="link"
+            onChange={(event) => setItem({ ...item, link: event.target.value })}
+          />
+        </label>
+      </p>
+
+      <p>
+        <button type="submit">{originalItem.id ? "Update" : "Add"} item</button>
+        <button type="reset" onClick={onCancel}>Cancel</button>
+      </p>
     </form>
   );
 };
