@@ -5,6 +5,7 @@ const getAllItems = async (list_id) => {
     .from("items")
     .select("*")
     .eq('list_id', list_id)
+    .order('taken', { ascending: true })
     .order("created_at", { ascending: true });
   return items;
 };

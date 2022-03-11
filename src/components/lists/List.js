@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 
-const List = ({ list, handleDelete }) => (
+const List = ({ list, handleEdit, handleDelete }) => (
   <li>
     <Link to={`/list/${list.id}`}>{list.name}</Link>{" "}
-    <button type="button" onClick={() => handleDelete(list.id)}>
-      ❌
-    </button>
+    <div className="icon edit" onClick={() => handleEdit(list)} />
+    <div className="icon delete" onClick={() => handleDelete(list)} />
   </li>
 );
 

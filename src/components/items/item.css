@@ -31,16 +31,29 @@
 #items li > a:hover {
   text-decoration: underline;
 }
-#items li button {
+#items li .icon {
   width: 2rem;
   height: 2rem;
   flex-shrink: 0;
-  border: 1px solid var(--foreground);
-  background: 1px solid var(--background);
-  border-radius: 3px;
   margin: 5px;
+  border: 0;
+  border-radius: 3px;
+
+  background-color: var(--background);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+#items li .icon.edit {
+  background-image: url("../../../public/icons/edit.png");
+}
+#items li .icon.delete {
+  background-image: url("../../../public/icons/delete.png");
+}
+#items li .icon.done {
+  background-image: url("../../../public/icons/done.png");
 }
 
-#items li button:hover {
-  background: var(--brand);
+#items li .icon:hover {
+  background-color: var(--brand);
 }

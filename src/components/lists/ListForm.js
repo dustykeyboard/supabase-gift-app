@@ -1,26 +1,28 @@
 import { useState } from "react"
 
-const ListForm = ({onSubmit}) => {
-    const [list, setList] = useState("")
+const ListForm = ({ original, onSubmit, onCancel }) => {
+    const [list, setList] = useState(original || { name: '' })
 
     const handleSubmit = async event => {
         event.preventDefault()
         onSubmit(list)
-        setList("")
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <h3>Add a new list</h3>
+      <h3>{original.id ? "Update" : "Add"} list</h3>
             <p><label>List name:<br />
                 <input
                 type="text"
-                value={list}
+                value={list.name}
                 aria-label="list"
-                onChange={event => setList(event.target.value)}
+                    onChange={event => setList({ ...list, name: event.target.value })}
             /></label></p>
 
-            <p><button type="submit">Add list</button></p>
+            <p>
+                <button type="submit">{original.id ? "Update" : "Add"} list</button>
+                <button type="reset" onClick={onCancel}>Cancel</button>
+            </p>
         </form>
     )
 }

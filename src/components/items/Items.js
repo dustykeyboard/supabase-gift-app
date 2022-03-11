@@ -32,8 +32,8 @@ const Items = () => {
   };
 
   const handleCreate = async (item) => {
-    const newList = await createItem(list_id, item);
-    setItems([...items, newList]);
+    const newItem = await createItem(list_id, item);
+    setItems([...items, newItem]);
     setEditing(null);
   };
 
@@ -97,18 +97,17 @@ const Items = () => {
         <p>No items found</p>
       )}
 
-      <p>
-        <button onClick={handleNew}>Add new item</button>
-      </p>
-
-      {editing != null && (
+      {editing != null ? (
         <ItemForm
           key={editing.id}
-          item={editing}
+          original={editing}
           onSubmit={editing.id ? handleUpdate : handleCreate}
           onCancel={handelCancel}
         />
-      )}
+      ):
+      (<p>
+        <button onClick={handleNew}>Add new item</button>
+      </p>)}
     </div>
   );
 };

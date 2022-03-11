@@ -17,18 +17,18 @@ const getList = async (id) => {
   return lists;
 };
 
-const createList = async (name) => {
+const createList = async (list) => {
   const { data: newList } = await supabase
     .from("lists")
-    .insert({ name })
+    .insert(list)
     .single();
   return newList;
 };
 
-const updateList = async (id, name) => {
+const updateList = async (id, list) => {
   const { data: updatedList } = await supabase
     .from("lists")
-    .update({ name })
+    .update(list)
     .eq("id", id)
     .single();
   return updatedList;

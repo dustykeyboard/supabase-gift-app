@@ -27,18 +27,31 @@
   text-decoration: none;
   flex-grow: 1;
 }
-#lists li button {
+#lists li .icon {
   width: 2rem;
   height: 2rem;
   flex-shrink: 0;
-  border: 1px solid var(--foreground);
-  background: 1px solid var(--background);
-  border-radius: 3px;
   margin: 5px;
+  border: 0;
+  border-radius: 3px;
+
+  background-color: var(--background);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+#lists li .icon.edit {
+  background-image: url("../../../public/icons/edit.png");
+}
+#lists li .icon.delete {
+  background-image: url("../../../public/icons/delete.png");
+}
+#lists li .icon.done {
+  background-image: url("../../../public/icons/done.png");
 }
 
-#lists li button:hover {
-  background: var(--brand);
+#lists li .icon:hover {
+  background-color: var(--brand);
 }
 
 #lists form {

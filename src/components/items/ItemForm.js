@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const ItemForm = ({ item: originalItem, onCancel, onSubmit }) => {
-  const [item, setItem] = useState(originalItem);
+const ItemForm = ({ original, onCancel, onSubmit }) => {
+  const [item, setItem] = useState(original);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -11,7 +11,7 @@ const ItemForm = ({ item: originalItem, onCancel, onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Add a new item</h3>
+      <h3>{original.id ? "Update" : "Add"} item</h3>
       <p>
         <label>
           Item name:
@@ -39,7 +39,7 @@ const ItemForm = ({ item: originalItem, onCancel, onSubmit }) => {
       </p>
 
       <p>
-        <button type="submit">{originalItem.id ? "Update" : "Add"} item</button>
+        <button type="submit">{original.id ? "Update" : "Add"} item</button>
         <button type="reset" onClick={onCancel}>Cancel</button>
       </p>
     </form>

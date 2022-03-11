@@ -1,8 +1,6 @@
 const Item = ({ item, handleToggle, handleEdit, handleDelete }) => (
   <li>
-    <button type="button" onClick={() => handleToggle(item)}>
-      {item.taken ? '✔️' : ''}
-    </button>
+    <div className={item.taken ? 'icon done' : 'icon'} onClick={() => handleToggle(item)} />
 
     {item.link ? (
       <a href={item.link} target="_blank" rel="noreferrer">
@@ -13,12 +11,8 @@ const Item = ({ item, handleToggle, handleEdit, handleDelete }) => (
           {item.name}
         </span>
     )}
-    <button type="button" onClick={() => handleEdit(item)}>
-      ✏️
-    </button>
-    <button type="button" onClick={() => handleDelete(item)}>
-      ❌
-    </button>
+    <div className="icon edit" onClick={() => handleEdit(item)} />
+    <div className="icon delete" onClick={() => handleDelete(item)} />
   </li>
 );
 
