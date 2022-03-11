@@ -73,7 +73,7 @@ const Items = () => {
     }
   };
 
-  if (!list.name) return null;
+  if (!list?.name) return null;
 
   return (
     <div id="items">
