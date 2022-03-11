@@ -50,6 +50,9 @@
 #items li .icon.delete {
   background-image: url("../../../public/icons/delete.png");
 }
+#items li .icon.unchecked {
+  background-image: url("../../../public/icons/unchecked.png");
+}
 #items li .icon.done {
   background-image: url("../../../public/icons/done.png");
 }
