@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 const ListForm = ({ original, onSubmit, onCancel }) => {
-    const [list, setList] = useState(original || { name: '' })
+    const [list, setList] = useState(original || {})
 
     const handleSubmit = async event => {
         event.preventDefault()
@@ -14,9 +14,16 @@ const ListForm = ({ original, onSubmit, onCancel }) => {
             <p><label>List name:<br />
                 <input
                 type="text"
-                value={list.name}
+                value={list.name || ''}
                 aria-label="list"
                     onChange={event => setList({ ...list, name: event.target.value })}
+            /></label></p>
+            <p><label>Description:<br />
+                <input
+                type="text"
+                value={list.description || ''}
+                aria-label="list"
+                    onChange={event => setList({ ...list, description: event.target.value })}
             /></label></p>
 
             <p>

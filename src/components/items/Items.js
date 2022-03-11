@@ -4,20 +4,17 @@ import { useParams } from "react-router-dom";
 import Item from "./Item";
 import ItemForm from "./ItemForm";
 import { createItem, getAllItems, updateItem, deleteItem } from "./data";
-import { getList } from "../lists/data";
+import ListHeader from '../lists/ListHeader';
 
 const Items = () => {
   const { list_id } = useParams();
 
-  const [list, setList] = useState({});
   const [items, setItems] = useState([]);
   const [editing, setEditing] = useState(null);
 
   useEffect(() => {
     const fetchLists = async () => {
-      const list = await getList(list_id);
       const items = await getAllItems(list_id);
-      setList(list);
       setItems(items || []);
     };
     try {
@@ -73,11 +70,9 @@ const Items = () => {
     }
   };
 
-  if (!list?.name) return null;
-
   return (
     <div id="items">
-      <h2>{list.name}</h2>
+      <ListHeader id={list_id} />
       {items.length > 0 ? (
         <>
           <p>{items.length} item ideas</p>

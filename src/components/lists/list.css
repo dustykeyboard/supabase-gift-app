@@ -57,3 +57,16 @@
 #lists form {
   padding: 0.5rem;
 }
+
+.list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.list-header h2 {
+  margin: 0 1rem 0 0;
+}
+.list-header p {
+  margin: 0;
+}
