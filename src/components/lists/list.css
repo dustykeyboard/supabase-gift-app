@@ -23,7 +23,7 @@
 #lists li a {
   display: block;
   padding: 1rem;
-  color: var(--foregroud);
+  color: var(--foreground);
   text-decoration: none;
   flex-grow: 1;
 }
