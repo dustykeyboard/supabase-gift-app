@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { supabase } from "./supabaseClient";
 import Auth from "./components/Auth";
-import Account from "./components/Account";
+import Nav from "./components/Nav";
 import Lists from "./components/lists";
 import Items from "./components/items";
+import Account from "./components/Account";
 
 const App = () => {
   const [session, setSession] = useState(null);
@@ -24,12 +25,7 @@ const App = () => {
       ) : (
         <>
           <Router>
-              <nav>
-                <ul>
-                  <li><Link to="/">🏠</Link></li>
-                  <li><Link to="/account">😁</Link></li>
-                </ul>
-            </nav>
+            <Nav />
             <main>
               <Routes>
                 <Route path="/" element={<Lists />} />

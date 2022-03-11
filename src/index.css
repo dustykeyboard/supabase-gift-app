@@ -25,9 +25,7 @@ body {
 /* Nav */
 nav {
   background: var(--brand);
-  padding: 2rem 1rem;
-  font-size: 2rem;
-  line-height: 2rem;
+  padding: 1rem;
 }
 nav ul {
   display: flex;
@@ -43,16 +41,23 @@ nav li {
   list-style: none;
 }
 nav a {
-  padding: 1rem;
+  padding: 0.5rem;
   color: var(--brand-foreground);
   background: var(--background);
   text-decoration: none;
   border-radius: 0.5rem;
-  box-shadow: 0.1rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
 }
 
 /* Main */
 main {
   padding: 1rem;
   overflow: auto;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0.5rem 0;
 }
