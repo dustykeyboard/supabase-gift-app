@@ -11,10 +11,11 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid #ccc;
 }
 
-#items li:nth-child(2n + 1) {
-  background-color: #eee;
+#items li:last-child {
+  border-bottom: 1px solid #ccc;
 }
 #items li:hover {
   background-color: var(--brand-light);
@@ -34,5 +35,12 @@
   width: 2rem;
   height: 2rem;
   flex-shrink: 0;
-  border-radius: 50%;
+  border: 1px solid var(--foreground);
+  background: 1px solid var(--background);
+  border-radius: 3px;
+  margin: 5px;
+}
+
+#items li button:hover {
+  background: var(--brand);
 }

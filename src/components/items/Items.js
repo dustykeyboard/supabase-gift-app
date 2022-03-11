@@ -20,7 +20,11 @@ const Items = () => {
       setList(list);
       setItems(items || []);
     };
-    fetchLists();
+    try {
+      fetchLists();
+    } catch (error) {
+      console.log(error);
+    }
   }, [list_id]);
 
   const handleNew = () => {
@@ -68,6 +72,8 @@ const Items = () => {
       setItems(items.filter((item) => item.id !== deletedItem.id));
     }
   };
+
+  if (!list.name) return null;
 
   return (
     <div id="items">

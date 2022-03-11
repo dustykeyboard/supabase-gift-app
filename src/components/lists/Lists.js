@@ -5,7 +5,7 @@ import ListForm from "./ListForm";
 import { createList, getAllLists, deleteList } from "./data";
 
 const Lists = () => {
-  const [lists, setLists] = useState([]);
+  const [lists, setLists] = useState();
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -26,6 +26,9 @@ const Lists = () => {
       setLists(lists.filter((list) => list.id !== deletedList.id));
     }
   };
+  
+
+  if (typeof lists?.length === 'undefined') return null;
 
   return (
     <div id="lists">
