@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const ItemForm = ({ onSubmit }) => {
-  const [item, setItem] = useState({ name: "", link: "" });
+const ItemForm = ({ item: originalItem,onSubmit }) => {
+  const [item, setItem] = useState(originalItem);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,7 +24,7 @@ const ItemForm = ({ onSubmit }) => {
         onChange={(event) => setItem({ ...item, link: event.target.value })}
       />
 
-      <button type="submit">add</button>
+      <button type="submit">{originalItem.id ? 'Update' : 'Add'}</button>
     </form>
   );
 };

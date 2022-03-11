@@ -26,3 +26,6 @@
   text-decoration: none;
   flex-grow: 1;
 }
+#items li button {
+  width: 4rem;
+}

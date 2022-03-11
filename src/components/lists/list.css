@@ -25,3 +25,6 @@
   text-decoration: none;
   flex-grow: 1;
 }
+#lists li button {
+  width: 4rem;
+}

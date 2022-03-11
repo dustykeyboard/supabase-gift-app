@@ -16,6 +16,7 @@ const Items = () => {
 
   const [list, setList] = useState({});
   const [items, setItems] = useState([]);
+  const [editing, setEditing] = useState(null);
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -27,22 +28,41 @@ const Items = () => {
     fetchLists();
   }, [list_id]);
 
+  const handleNew = () => {
+    setEditing({})
+  }
+
   const handleCreate = async (item) => {
     const newList = await createItem(list_id, item);
     setItems([...items, newList]);
+    setEditing(null);
   };
 
   const handleToggle = async (item) => {
-    const updatedItem = updateItem(item.id, { ...item, taken: !item.taken });
+    const updatedItem = await updateItem(item.id, { ...item, taken: !item.taken, id: item.id });
     setItems([
       ...items.filter((item) => item.id !== updatedItem.id),
       updatedItem,
     ]);
   };
 
-  const handleDelete = async (id) => {
+  const handleEdit = (item) => {
+    setEditing(item);
+  }
+
+  const handleUpdate = async (item) => {
+    const updatedItem = await updateItem(item.id, { ...item, id: item.id });
+    console.log('handleUpdate', item, updatedItem)
+    setItems([
+      ...items.filter(item => item.id !== updatedItem.id),
+      updatedItem,
+    ]);
+    setEditing(null);
+  }
+
+  const handleDelete = async (item) => {
     if (window.confirm("Are you sure you want to delete this list?")) {
-      const deletedItem = await deleteItem(id);
+      const deletedItem = await deleteItem(item.id);
       setItems(items.filter((item) => item.id !== deletedItem.id));
     }
   };
@@ -59,6 +79,7 @@ const Items = () => {
                 key={item.id}
                 item={item}
                 handleToggle={handleToggle}
+                handleEdit={handleEdit}
                 handleDelete={handleDelete}
               />
             ))}
@@ -68,7 +89,11 @@ const Items = () => {
         <p>No items found</p>
       )}
 
-      <ItemForm onSubmit={handleCreate} />
+      <button type="button" onClick={handleNew}>Add new item</button>
+
+      {editing != null && (
+        <ItemForm key={editing.id} item={editing} onSubmit={editing.id ? handleUpdate : handleCreate} />
+      )}
     </div>
   );
 };

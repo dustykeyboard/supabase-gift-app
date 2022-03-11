@@ -1,6 +1,6 @@
-const Item = ({ item, handleToggle, handleDelete }) => (
+const Item = ({ item, handleToggle, handleEdit, handleDelete }) => (
   <li>
-    <button type="button" onClick={() => handleToggle(item.id)}>
+    <button type="button" onClick={() => handleToggle(item)}>
       {item.taken ? '✅' : '🟩'}
     </button>
 
@@ -13,7 +13,10 @@ const Item = ({ item, handleToggle, handleDelete }) => (
           {item.name}
         </span>
     )}
-    <button type="button" onClick={() => handleDelete(item.id)}>
+    <button type="button" onClick={() => handleEdit(item)}>
+      ✏️
+    </button>
+    <button type="button" onClick={() => handleDelete(item)}>
       ❌
     </button>
   </li>
