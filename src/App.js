@@ -5,7 +5,7 @@ import Auth from "./components/Auth";
 import Nav from "./components/Nav";
 import Lists from "./components/lists";
 import Items from "./components/items";
-import Account from "./components/Account";
+import Account from "./components/account/Account";
 
 const App = () => {
   const [session, setSession] = useState(null);

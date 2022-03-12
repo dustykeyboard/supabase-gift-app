@@ -1,6 +1,7 @@
+import "./account.css";
 import { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
-import Avatar from './Avatar';
+import { supabase } from "../../supabaseClient";
+import EditableAvatar from "./EditableAvatar";
 
 const Account = ({ session }) => {
   const [loading, setLoading] = useState(true);
@@ -70,51 +71,63 @@ const Account = ({ session }) => {
 
   return (
     <div aria-live="polite">
+      <p className="button block">
+        <button type="button" onClick={() => supabase.auth.signOut()}>
+          Sign Out
+        </button>
+      </p>
       {loading ? (
-        "Saving ..."
+        <center>Saving ...</center>
       ) : (
         <form onSubmit={updateProfile} className="form-widget">
-          <div>Email: {session.user.email}</div>
-          <div>
-            <label htmlFor="username">Name</label>
-            <input
-              id="username"
-              type="text"
-              value={username || ""}
-              onChange={(e) => setUsername(e.target.value)}
+          <p>
+            <label>
+              Email:
+              <br />
+              {session.user.email}
+            </label>
+          </p>
+          <p>
+            <label htmlFor="username">
+              Name:
+              <br />
+              <input
+                id="username"
+                type="text"
+                value={username || ""}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </label>
+          </p>
+          <p>
+            <label htmlFor="website">
+              Website:
+              <br />
+              <input
+                id="website"
+                type="url"
+                value={website || ""}
+                onChange={(e) => setWebsite(e.target.value)}
+              />
+            </label>
+          </p>
+          <p>
+            <EditableAvatar
+              url={avatar_url}
+              size={150}
+              onUpload={(url) => {
+                setAvatarUrl(url);
+                updateProfile({ username, website, avatar_url: url });
+              }}
             />
-          </div>
-          <div>
-            <label htmlFor="website">Website</label>
-            <input
-              id="website"
-              type="url"
-              value={website || ""}
-              onChange={(e) => setWebsite(e.target.value)}
-            />
-          </div>
-          <Avatar
-            url={avatar_url}
-            size={150}
-            onUpload={(url) => {
-              setAvatarUrl(url);
-              updateProfile({ username, website, avatar_url: url });
-            }}
-          />
-          <div>
-            <button className="button block primary" disabled={loading}>
+          </p>
+          <p>
+            <button disabled={loading}>
               Update profile
             </button>
-          </div>
+          </p>
         </form>
       )}
-      <button
-        type="button"
-        className="button block"
-        onClick={() => supabase.auth.signOut()}
-      >
-        Sign Out
-      </button>
     </div>
   );
 };

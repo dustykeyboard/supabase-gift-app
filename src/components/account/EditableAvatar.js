@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { supabase } from '../supabaseClient'
 import VisuallyHidden from '@reach/visually-hidden'
+import { supabase } from '../../supabaseClient'
 
-const Avatar = ({ url, size, onUpload }) => {
+const EditableAvatar = ({ url, size, onUpload }) => {
   const [avatarUrl, setAvatarUrl] = useState(null)
   const [uploading, setUploading] = useState(false)
 
@@ -77,4 +77,4 @@ const Avatar = ({ url, size, onUpload }) => {
   )
 }
 
-export default Avatar;
+export default EditableAvatar;
