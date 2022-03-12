@@ -78,9 +78,9 @@ const Lists = () => {
           onCancel={handelCancel}
         />
       ) : (
-        <p>
-          <button onClick={handleNew}>Add new item</button>
-        </p>
+        <form>
+          <button onClick={handleNew}>Add list</button>
+        </form>
       )}
     </div>
   );

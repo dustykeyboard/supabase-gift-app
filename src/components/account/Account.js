@@ -70,7 +70,7 @@ const Account = ({ session }) => {
   };
 
   return (
-    <div aria-live="polite">
+    <div id="account" aria-live="polite">
       <p className="button block">
         <button type="button" onClick={() => supabase.auth.signOut()}>
           Sign Out

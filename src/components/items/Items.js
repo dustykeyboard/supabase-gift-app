@@ -100,9 +100,9 @@ const Items = () => {
           onCancel={handelCancel}
         />
       ):
-      (<p>
-        <button onClick={handleNew}>Add new item</button>
-      </p>)}
+      (<form>
+        <button onClick={handleNew}>Add item</button>
+      </form>)}
     </div>
   );
 };

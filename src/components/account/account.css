@@ -11,6 +11,7 @@ form {
 }
 form input {
   width: 100%;
+  box-sizing: border-box;
   text-align: left;
   padding: 0.2rem;
 }
@@ -21,6 +22,7 @@ form button {
   color: var(--background);
   background: var(--brand);
   border: 0;
+  margin: 0 0 0.5rem;
 }
 
 p {
