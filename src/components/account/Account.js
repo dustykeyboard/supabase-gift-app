@@ -78,8 +78,9 @@ const Account = ({ session }) => {
       </p>
       {loading ? (
         <center>Saving ...</center>
-      ) : (
-        <form onSubmit={updateProfile} className="form-widget">
+        ) : (
+          <form onSubmit={updateProfile} className="form-widget">
+          <h2>Account</h2>
           <p>
             <label>
               Email:

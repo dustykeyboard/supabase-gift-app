@@ -21,15 +21,16 @@ export default function Auth() {
   }
 
   return (
-    <div className="row flex flex-center">
-      <div className="col-6 form-widget" aria-live="polite">
-        <h1 className="header">Supabase + React</h1>
-        <p className="description">Sign in via magic link with your email below</p>
+    <>
+      <div id="authHeader">
+        <h1><img src="/icons/list.png" width="32" height="32" alt="logo" /> Gift List App</h1>
+      </div>
         {loading ? (
-          'Sending magic link...'
-        ) : (
-          <form onSubmit={handleLogin}>
-            <label htmlFor="email">Email</label>
+          <center>Sending magic link to your email...</center>
+          ) : (
+            <form onSubmit={handleLogin}>
+            <p className="description">Sign in with your email below</p>
+            <p><label htmlFor="email">Email:<br/>
             <input
               id="email"
               className="inputField"
@@ -37,13 +38,12 @@ export default function Auth() {
               placeholder="Your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            />
-            <button className="button block" aria-live="polite">
-              Send magic link
-            </button>
+            /></label></p>
+            <p><button aria-live="polite">
+              Send me a link
+            </button></p>
           </form>
-        )}
-      </div>
-    </div>
+      )}
+      </>
   )
 }

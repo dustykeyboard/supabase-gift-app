@@ -57,3 +57,13 @@ h3,
 p {
   margin: 0.5rem 0;
 }
+
+#authHeader {
+  background-color: var(--brand);
+  color: var(--background);
+  text-align: center;
+}
+#authHeader h1 {
+  margin: 0;
+  padding: 1rem;
+}

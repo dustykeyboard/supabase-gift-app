@@ -51,14 +51,15 @@ const EditableAvatar = ({ url, size, onUpload }) => {
   }
 
   return (
-    <div style={{ width: size }} aria-live="polite">
+    <>
       <img
         src={avatarUrl ? avatarUrl : `https://place-hold.it/${size}x${size}`}
         alt={avatarUrl ? 'Avatar' : 'No image'}
         className="avatar image"
         style={{ height: size, width: size }}
       />
-      {uploading ? "Uploading..." : (<>
+      <br />
+      {uploading ? "Uploading..." : (<> 
         <label className="button primary block" htmlFor="single">
           Upload an avatar
         </label>
@@ -73,7 +74,7 @@ const EditableAvatar = ({ url, size, onUpload }) => {
         </VisuallyHidden>
         </>
       )}
-    </div>
+    </>
   )
 }
 
