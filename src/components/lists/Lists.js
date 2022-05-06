@@ -16,6 +16,17 @@ const Lists = () => {
     fetchLists();
   }, []);
 
+  // realtime updates to lists
+  useEffect(() => {
+    const subscription = supabase.from('lists').on('INSERT', (payload) => {
+      setLists(currentLists => [...currentLists, payload.new])
+    }).subscribe();
+
+    return () => {
+      supabase.removeSubscription(subscription);
+    }
+  }, [])
+
   const handleNew = () => {
     setEditing({});
   };
