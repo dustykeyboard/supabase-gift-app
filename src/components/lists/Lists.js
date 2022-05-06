@@ -17,7 +17,7 @@ const Lists = () => {
     fetchLists();
   }, []);
 
-  // realtime * to lists
+  // subscription to realtime lists changes
   useEffect(() => {
     const subscription = supabase.from('lists').on('*', payload => {
       setLists(currentLists => [
