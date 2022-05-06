@@ -5,6 +5,7 @@ import Item from "./Item";
 import ItemForm from "./ItemForm";
 import { createItem, getAllItems, updateItem, deleteItem } from "./data";
 import ListHeader from '../lists/ListHeader';
+import { supabase } from '../../supabaseClient';
 
 const Items = () => {
   const { list_id } = useParams();
@@ -24,8 +25,25 @@ const Items = () => {
     }
   }, [list_id]);
 
+  // subscription to realtime items changes
+  useEffect(() => {
+    const subscription = supabase.from('items').on('*', payload => {
+      setItems(currentItems => [
+          ...currentItems.filter((item) => item.id !== payload.old.id),
+          payload.new
+        ].filter(item => item.id))
+    }).subscribe();
+
+    return () => {
+      supabase.removeSubscription(subscription);
+    }
+  }, [])
+
   const handleNew = () => {
-    setEditing({});
+    setEditing({
+      name: '',
+      link: '',
+    });
   };
 
   const handleCreate = async (item) => {
@@ -35,15 +53,11 @@ const Items = () => {
   };
 
   const handleToggle = async (item) => {
-    const updatedItem = await updateItem(item.id, {
+    await updateItem(item.id, {
       ...item,
       taken: !item.taken,
       id: item.id,
     });
-    setItems([
-      ...items.filter((item) => item.id !== updatedItem.id),
-      updatedItem,
-    ]);
   };
 
   const handleEdit = (item) => {
@@ -55,18 +69,13 @@ const Items = () => {
   };
 
   const handleUpdate = async (item) => {
-    const updatedItem = await updateItem(item.id, { ...item, id: item.id });
-    setItems([
-      ...items.filter((item) => item.id !== updatedItem.id),
-      updatedItem,
-    ]);
+    await updateItem(item.id, { ...item, id: item.id });
     setEditing(null);
   };
 
   const handleDelete = async (item) => {
     if (window.confirm("Are you sure you want to delete this list?")) {
-      const deletedItem = await deleteItem(item.id);
-      setItems(items.filter((item) => item.id !== deletedItem.id));
+      await deleteItem(item.id);
     }
   };
 

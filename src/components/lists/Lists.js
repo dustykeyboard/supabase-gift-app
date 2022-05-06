@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import List from "./List";
 import ListForm from "./ListForm";
 import { createList, getAllLists, updateList, deleteList } from "./data";
+import { supabase } from "../../supabaseClient";
 
 const Lists = () => {
   const [lists, setLists] = useState();
@@ -16,13 +17,29 @@ const Lists = () => {
     fetchLists();
   }, []);
 
+  // subscription to realtime lists changes
+  useEffect(() => {
+    const subscription = supabase.from('lists').on('*', payload => {
+      setLists(currentLists => [
+          ...currentLists.filter((list) => list.id !== payload.old.id),
+          payload.new
+        ].filter(list => list.id))
+    }).subscribe();
+
+    return () => {
+      supabase.removeSubscription(subscription);
+    }
+  }, [])
+
   const handleNew = () => {
-    setEditing({});
+    setEditing({
+      name: '',
+      description: '',
+    });
   };
 
   const handleCreate = async (name) => {
-    const newList = await createList(name);
-    setLists([...lists, newList]);
+    await createList(name);
     setEditing(null);
   };
 
@@ -35,18 +52,14 @@ const Lists = () => {
   };
 
   const handleUpdate = async (list) => {
-    const updatedList = await updateList(list.id, { ...list, id: list.id });
-    setLists([
-      ...lists.filter((list) => list.id !== updatedList.id),
-      updatedList,
-    ]);
+    await updateList(list.id, { ...list, id: list.id });
     setEditing(null);
   };
 
   const handleDelete = async (list) => {
     if (window.confirm("Are you sure you want to delete this list?")) {
-      const deletedList = await deleteList(list.id);
-      setLists(lists.filter((list) => list.id !== deletedList.id));
+      await deleteList(list.id);
+      // setLists(lists.filter((list) => list.id !== deletedList.id));
     }
   };
 
