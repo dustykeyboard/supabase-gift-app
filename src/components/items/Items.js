@@ -47,8 +47,7 @@ const Items = () => {
   };
 
   const handleCreate = async (item) => {
-    const newItem = await createItem(list_id, item);
-    setItems([...items, newItem]);
+    await createItem(list_id, item);
     setEditing(null);
   };
 
